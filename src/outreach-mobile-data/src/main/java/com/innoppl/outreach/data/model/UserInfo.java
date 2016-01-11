@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
  */
 @Cacheable
 @Entity
-@Table(name = "USER_INFO")
+@Table(name = "PATH_USERS")
 public class UserInfo implements Serializable {
     
     private static final long serialVersionUID = 1L;
@@ -35,38 +35,38 @@ public class UserInfo implements Serializable {
     @Column(name = "USER_ID")
     private String userId;
     
-    @Column(name = "PASSWORD_ENC")
+    @Column(name = "PASSWORD")
     private String passwordEnc;
     
-    @Column(name = "PW_EXPIRE_DATE")
-    private Date pwExpireDate;
+    // @Column(name = "PW_EXPIRE_DATE")
+    // private Date pwExpireDate;
     
-    @Column(name = "NAME_FIRST")
+    @Column(name = "FIRST_NAME")
     private String nameFirst;
     
-    @Column(name = "NAME_LAST")
+    @Column(name = "LAST_NAME")
     private String nameLast;
     
-    @Column(name = "USER_ACTIVE_GCT")
-    private Integer userActiveGCT;
+    // @Column(name = "USER_ACTIVE")
+    // private Integer userActiveGCT;
     
-    @Column(name = "REC_ACTIVE_GCT") 
-    private Integer recActiveGCT;
+    // @Column(name = "REC_ACTIVE") 
+    // private Integer recActiveGCT;
     
-    @Column(name = "ENTRY_DATE_TIME")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date entryDateTime;
+    // @Column(name = "CREATE_DATE")
+    // @Temporal(TemporalType.TIMESTAMP)
+    // private Date entryDateTime;
     
-    @Column(name = "ENTRY_USER_KEY")
+    @Column(name = "CREATE_USER_KEY")
     private Integer entryUserkey;
     
-    @NotNull
-    @Column(name = "LOG_DATE_TIME")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date logDateTime;
+    // @NotNull
+    // @Column(name = "LOG_DATE_TIME")
+    // @Temporal(TemporalType.TIMESTAMP)
+    //private Date logDateTime;
     
-    @Column(name = "LOG_USER_KEY")
-    private Integer logUserkey;
+    // @Column(name = "LOG_USER_KEY")
+    //private Integer logUserkey;
 
     public Integer getUserkey() {
         return userkey;
@@ -101,11 +101,12 @@ public class UserInfo implements Serializable {
     }
 
     public Date getPwExpireDate() {
-        return pwExpireDate;
+        return new Date();
+//        return pwExpireDate;
     }
 
     public void setPwExpireDate(Date pwExpireDate) {
-        this.pwExpireDate = pwExpireDate;
+        // this.pwExpireDate = pwExpireDate;
     }
 
     public String getNameFirst() {
@@ -125,27 +126,30 @@ public class UserInfo implements Serializable {
     }
 
     public Integer getUserActiveGCT() {
-        return userActiveGCT;
+        return 0;
+        // return userActiveGCT;
     }
 
     public void setUserActiveGCT(Integer userActiveGCT) {
-        this.userActiveGCT = userActiveGCT;
+        // this.userActiveGCT = userActiveGCT;
     }
 
     public Integer getRecActiveGCT() {
-        return recActiveGCT;
+        // return recActiveGCT;
+        return 0;
     }
 
     public void setRecActiveGCT(Integer recActiveGCT) {
-        this.recActiveGCT = recActiveGCT;
+        // this.recActiveGCT = recActiveGCT;
     }
 
     public Date getEntryDateTime() {
-        return entryDateTime;
+        // return entryDateTime;
+        return new Date();
     }
 
     public void setEntryDateTime(Date entryDateTime) {
-        this.entryDateTime = entryDateTime;
+        // this.entryDateTime = entryDateTime;
     }
 
     public Integer getEntryUserkey() {
@@ -157,18 +161,20 @@ public class UserInfo implements Serializable {
     }
 
     public Date getLogDateTime() {
-        return logDateTime;
+        //return logDateTime;
+        return new Date();
     }
 
     public void setLogDateTime(Date logDateTime) {
-        this.logDateTime = logDateTime;
+        //this.logDateTime = logDateTime;
     }
 
     public Integer getLogUserkey() {
-        return logUserkey;
+        //return logUserkey;
+        return 0;
     }
 
     public void setLogUserkey(Integer logUserkey) {
-        this.logUserkey = logUserkey;
+        //this.logUserkey = logUserkey;
     }
 }

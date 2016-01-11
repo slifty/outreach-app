@@ -5,6 +5,9 @@ import javax.persistence.Basic;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -12,6 +15,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.innoppl.outreach.data.utils.InjectMethods;
+import com.innoppl.outreach.data.utils.Method;
 
 /**
  *
@@ -24,6 +30,13 @@ public class PATHStatus extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
+    @InjectMethods(include = Method.ALL)
+    protected Integer id;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "DateOfStatus")
@@ -49,6 +62,14 @@ public class PATHStatus extends AbstractEntity {
     }
 
     public PATHStatus(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+    	return this.id;
+    }
+    
+    public void setId(Integer id) {
         this.id = id;
     }
 

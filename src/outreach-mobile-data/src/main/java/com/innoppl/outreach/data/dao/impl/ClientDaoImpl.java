@@ -45,25 +45,23 @@ public class ClientDaoImpl extends AbstractJPADao<Client, Integer>
         }
         final Date endDate = cal2.getTime();
         LOG.debug("Searching: " + startAge + " , " + endAge + " , " + startDate.toString() + " , " + endDate.toString());
-        try {
-            return (List<Client>) getEntityManager().createQuery(
-                    "select u from Client u where u.firstName like :firstName"
-                    + " and u.lastName like :lastName"
-                    + " and u.ssn like :ssn"
-                    + " and u.dob BETWEEN :endDate AND :startDate"
-                    + " and u.isDeleted = 0")
-                    .setParameter("lastName", "%" + lastName + "%")
-                    .setParameter("firstName", "%" + firstName + "%")
-                    .setParameter("ssn", "%" + ssn + "%")
-                    .setParameter("ssn", "%" + ssn + "%")
-                    .setParameter("startDate", startDate)
-                    .setParameter("endDate", endDate)
-                    .setFirstResult(0)
-                    .setMaxResults(20)
-                    .getResultList();
-        } catch (Exception ex) {
-            LOG.error(LoggerUtils.getStackTrace(ex));
-            return null;
-        }
+       try {
+           return (List<Client>) getEntityManager().createQuery(
+                   "select u from Client u where u.firstName like :firstName"
+                   + " and u.lastName like :lastName"
+                   + " and u.ssn like :ssn"
+                   + " and u.dob BETWEEN :endDate AND :startDate")
+                   .setParameter("lastName", "%" + lastName + "%")
+                   .setParameter("firstName", "%" + firstName + "%")
+                   .setParameter("ssn", "%" + ssn + "%")
+                   .setParameter("startDate", startDate)
+                   .setParameter("endDate", endDate)
+                   .setFirstResult(0)
+                   .setMaxResults(20)
+                   .getResultList();
+       } catch (Exception ex) {
+           LOG.error(LoggerUtils.getStackTrace(ex));
+           return null;
+       }
     }
 }

@@ -1,5 +1,8 @@
 package com.innoppl.outreach.data.model;
 
+
+import com.innoppl.outreach.data.utils.InjectMethods;
+import com.innoppl.outreach.data.utils.Method;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -11,6 +14,10 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Basic;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -27,85 +34,92 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
  */
 @Cacheable
 @Entity
-@Table(name = "Client")
+@Table(name = "PATH_CLIENT")
 public class Client extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "CLIENT_KEY")
+    @InjectMethods(include = Method.ALL)
+    protected Integer id;
+
     @Size(max = 256)
-    @Column(name = "FirstName")
+    @Column(name = "FIRST_NAME")
     private String firstName;
 
     @Size(max = 256)
-    @Column(name = "MiddleName")
+    @Column(name = "MIDDLE_NAME")
     private String middleName;
 
     @Size(max = 256)
-    @Column(name = "LastName")
+    @Column(name = "LAST_NAME")
     private String lastName;
 
     @Size(max = 45)
-    @Column(name = "NameSuffix")
+    @Column(name = "SUFFIX")
     private String nameSuffix;
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "NameDataQuality")
+    @Column(name = "NAME_TYPE")
     private Integer nameDataQuality;
 
     @Size(max = 45)
-    @Column(name = "SSN")
+    @Column(name = "IDENTIFICATION")
     private String ssn;
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "SSNDataQuality")
+    @Column(name = "ID_TYPE")
     private Integer sSNDataQuality;
 
-    @Column(name = "DOB")
+    @Column(name = "DATE_OF_BIRTH")
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(iso=ISO.DATE)
     private Date dob;
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "DOBDataQuality")
+    @Column(name = "DOB_TYPE")
     private Integer dobDataQuality;
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "Gender")
+    @Column(name = "GENDER_KEY")
     private Integer gender;
 
     @Size(max = 45)
-    @Column(name = "OtherGender")
+    @Column(name = "GENDER_DESC")
     private String otherGender;
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "Ethnicity")
+    @Column(name = "ETHNICITY_KEY")
     private Integer ethnicity;
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "Race")
+    @Column(name = "RACE_KEY")
     private Integer race;
 
     @Size(max = 1024)
-    @Column(name = "imageUrl")
+    @Column(name = "PICTURE_NAME")
     private String imageUrl;
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "VeteranStatus")
+    @Column(name = "VETERAN")
     private Integer veteranStatus;
 
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "personalID")
-    private List<Enrollment> enrollmentList;
+//    @JsonIgnore
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "personalID")
+//    private List<Enrollment> enrollmentList;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "personalID")
-    private VeteranInfo veteranInfo;
+//    @OneToOne(cascade = CascadeType.ALL, mappedBy = "personalID")
+//    private VeteranInfo veteranInfo;
 
     @JsonIgnore
     @Transient
@@ -123,6 +137,14 @@ public class Client extends AbstractEntity {
     }
 
     public Client(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+    	return this.id;
+    }
+    
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -247,20 +269,23 @@ public class Client extends AbstractEntity {
     }
 
     public List<Enrollment> getEnrollmentList() {
-        return enrollmentList;
+//        return enrollmentList;
+    	// TODO: re enable enrollments
+    	return null;
     }
 
     public void setEnrollmentList(List<Enrollment> enrollmentList) {
-        this.enrollmentList = enrollmentList;
+//        this.enrollmentList = enrollmentList;
     }
 
     public VeteranInfo getVeteranInfo() {
-        return veteranInfo;
+//        return veteranInfo;
+    	return null;
     }
 
     @JsonProperty("VeteranInfo")
     public void setVeteranInfo(VeteranInfo veteranInfo) {
-        this.veteranInfo = veteranInfo;
+//        this.veteranInfo = veteranInfo;
     }
 
     public Integer getAge() {

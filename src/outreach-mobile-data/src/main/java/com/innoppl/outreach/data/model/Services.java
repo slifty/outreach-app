@@ -5,6 +5,9 @@ import javax.persistence.Basic;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -14,6 +17,9 @@ import javax.validation.constraints.Size;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.innoppl.outreach.data.utils.InjectMethods;
+import com.innoppl.outreach.data.utils.Method;
 
 /**
  *
@@ -26,6 +32,13 @@ public class Services extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
+    @InjectMethods(include = Method.ALL)
+    protected Integer id;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "DateProvided")
@@ -64,6 +77,14 @@ public class Services extends AbstractEntity {
     }
 
     public Services(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+    	return this.id;
+    }
+    
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -107,24 +107,26 @@ public class UIClientDataController {
             mav.addObject("gender", "N/A");
         }
 
-        if (client.getRace() != null && client.getRace() != -1) {
-            mav = lovService.injectLov(mav, LOVType.race.name(), String.valueOf(client.getRace()));
-        } else {
+       if (client.getRace() != null && client.getRace() != -1) {
+           mav = lovService.injectLov(mav, LOVType.race.name(), String.valueOf(client.getRace()));
+       } else {
             mav.addObject("race", "N/A");
-        }
+       }
 
-        if (client.getEthnicity() != null && client.getEthnicity() != -1) {
-            mav = lovService.injectLov(mav, LOVType.ethnicity.name(), String.valueOf(client.getEthnicity()));
-        } else {
+       if (client.getEthnicity() != null && client.getEthnicity() != -1) {
+           mav = lovService.injectLov(mav, LOVType.ethnicity.name(), String.valueOf(client.getEthnicity()));
+       } else {
             mav.addObject("ethnicity", "N/A");
-        }
+       }
 
-        if (client.getEnrollmentList() != null && client.getEnrollmentList().size() > 0) {
-            mav.addObject("enrollmentID", client.getEnrollmentList().get(0).getId());
-        } else {
+       if (client.getEnrollmentList() != null && client.getEnrollmentList().size() > 0) {
+           mav.addObject("enrollmentID", client.getEnrollmentList().get(0).getId());
+       } else {
             mav.addObject("enrollmentID", "-1");
-        }
-        mav.addObject("projectList",projectService.findAllProjects());
+       }
+
+//          mav.addObject("projectList",projectService.findAllProjects());
+        mav.addObject("projectList", null);
         mav.addObject("responseCode", responseCode);
         mav.addObject("editable", true);
         mav.setViewName("client/view");

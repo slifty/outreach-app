@@ -2,6 +2,7 @@ package com.innoppl.outreach.service.business.impl;
 
 import com.innoppl.outreach.data.dao.ClientDao;
 import com.innoppl.outreach.data.dao.VeteranInfoDao;
+import com.innoppl.outreach.data.dao.impl.ClientDaoImpl;
 import com.innoppl.outreach.data.model.Client;
 import com.innoppl.outreach.data.model.Enrollment;
 import com.innoppl.outreach.data.model.Project;
@@ -16,6 +17,9 @@ import com.innoppl.outreach.service.logger.InjectLogging;
 import com.innoppl.outreach.service.logger.LogLevel;
 import com.innoppl.outreach.service.business.bean.ClientSearchRequest;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +31,9 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Service("ClientService")
 public class ClientServiceImpl implements ClientService {
+	
+    private final static Logger LOG
+    = LoggerFactory.getLogger(ClientDaoImpl.class);
 
     @Autowired
     private ClientDao clientDao;
@@ -46,7 +53,6 @@ public class ClientServiceImpl implements ClientService {
     @InjectLogging(LogLevel.DEBUG)
     @Override
     public List<Client> searchClient(ClientSearchRequest clientSearchRequest) {
-
         final String fName = clientSearchRequest.getFirstName() == null ? ""
                 : clientSearchRequest.getFirstName().trim();
         final String lName = clientSearchRequest.getLastName() == null ? ""
@@ -55,6 +61,7 @@ public class ClientServiceImpl implements ClientService {
                 : clientSearchRequest.getSsn().trim();
         final Integer sAge = clientSearchRequest.getsAge();
         final Integer eAge = clientSearchRequest.geteAge();
+        
         return clientDao.searchClient(fName, lName, ssn, sAge, eAge);
     }
 

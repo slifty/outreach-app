@@ -11,7 +11,7 @@
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">  
             <list>
-                <value>file:${outreach-app-config}</value>
+                <value>file:/Users/slifty/Code/Java/outreach-app/src/outreach-mobile-data/src/main/resources/outreach.properties</value>
             </list>
         </property>
     </bean>

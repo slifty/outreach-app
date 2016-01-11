@@ -29,95 +29,89 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @MappedSuperclass
 public abstract class AbstractEntity implements Serializable {
-
-    @Id
-    @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
-    @InjectMethods(include = Method.ALL)
-    protected Integer id;
     
-    @JsonIgnore
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "dateCreated")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateCreated = new Date();
+    // @JsonIgnore
+    // @Basic(optional = false)
+    // @NotNull
+    // @Column(name = "dateCreated")
+    // @Temporal(TemporalType.TIMESTAMP)
+    // private Date dateCreated = new Date();
     
-    @JsonIgnore
-    @Column(name = "dateDeleted")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateDeleted;
+    // @JsonIgnore
+    // @Column(name = "dateDeleted")
+    // @Temporal(TemporalType.TIMESTAMP)
+    // private Date dateDeleted;
     
-    @JsonIgnore
-    @Column(name = "dateUpdated")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateUpdated;
+    // @JsonIgnore
+    // @Column(name = "dateUpdated")
+    // @Temporal(TemporalType.TIMESTAMP)
+    // private Date dateUpdated;
     
-    @JsonIgnore
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "userID")
-    private Integer userID = 0;
-    @Basic(optional = false)
+    // @JsonIgnore
+    // @Basic(optional = false)
+    // @NotNull
+    // @Column(name = "userID")
+    // private Integer userID = 0;
+    // @Basic(optional = false)
     
-    @JsonIgnore
-    @NotNull
-    @Column(name = "isDeleted")
-    private Integer isDeleted = 0;
+    // @JsonIgnore
+    // @NotNull
+    // @Column(name = "isDeleted")
+    // private Integer isDeleted = 0;
 
     public String toJson() throws IOException {
         final ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(this);
     }
 
-    public Integer getId() {
-        return id;
-    }
+    abstract public Integer getId();
 
     @JsonProperty("ID")
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    abstract public void setId(Integer id);
 
     public Integer getUserID() {
-        return userID;
+        //return userID;
+        return 0;
     }
 
     public void setUserID(Integer userID) {
-        this.userID = userID;
+        //this.userID = userID;
     }
 
     public Date getDateCreated() {
-        return dateCreated;
+        //return dateCreated;
+        return new Date();
     }
 
     public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
+        //this.dateCreated = dateCreated;
     }
 
     public Date getDateDeleted() {
-        return dateDeleted;
+        //return dateDeleted;
+        return new Date();
     }
 
     public void setDateDeleted(Date dateDeleted) {
-        this.dateDeleted = dateDeleted;
+        //this.dateDeleted = dateDeleted;
     }
 
     public Date getDateUpdated() {
-        return dateUpdated;
+        //return dateUpdated;
+        return new Date();
     }
 
     public void setDateUpdated(Date dateUpdated) {
-        this.dateUpdated = dateUpdated;
+        //this.dateUpdated = dateUpdated;
     }
 
     public Integer getIsDeleted() {
-        return isDeleted;
+        //return isDeleted;
+        return 0;
     }
 
     public void setIsDeleted(Integer isDeleted) {
-        this.isDeleted = isDeleted;
+        //this.isDeleted = isDeleted;
     }
 
     @Override

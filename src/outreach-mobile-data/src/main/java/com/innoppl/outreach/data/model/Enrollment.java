@@ -7,6 +7,9 @@ import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -19,6 +22,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.innoppl.outreach.data.utils.InjectMethods;
+import com.innoppl.outreach.data.utils.Method;
+
 /**
  *
  * @author Jerald Mejarla
@@ -26,10 +32,19 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Cacheable
 @Entity
 @Table(name = "Enrollment")
+
+// TODO: This is the PROGRAM_ENROLLMENTS table in Compass
 public class Enrollment extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
+    @InjectMethods(include = Method.ALL)
+    protected Integer id;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "EntryDate")
@@ -94,7 +109,7 @@ public class Enrollment extends AbstractEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "projectEntryID")
     private List<Disabilities> disabilitiesList;
 
-    @JoinColumn(name = "PersonalID", referencedColumnName = "ID")
+    @JoinColumn(name = "PersonalID", referencedColumnName = "CLIENT_KEY")
     @ManyToOne(optional = false)
     private Client personalID;
 
@@ -118,6 +133,15 @@ public class Enrollment extends AbstractEntity {
         this.id = id;
     }
 
+    public Integer getId() {
+    	return this.id;
+    }
+    
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    
     public Date getEntryDate() {
         return entryDate;
     }

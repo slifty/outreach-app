@@ -1,15 +1,23 @@
 package com.innoppl.outreach.data.model;
 
 import java.util.List;
+
+import javax.persistence.Basic;
 import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.codehaus.jackson.annotate.JsonIgnore;
+
+import com.innoppl.outreach.data.utils.InjectMethods;
+import com.innoppl.outreach.data.utils.Method;
 
 /**
  *
@@ -20,6 +28,13 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @Table(name = "Project")
 public class Project extends AbstractEntity {
     private static final long serialVersionUID = 1L;
+    
+    @Id
+    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
+    @InjectMethods(include = Method.ALL)
+    protected Integer id;
     
     @Column(name = "ProjectName")
     private String projectName;
@@ -43,6 +58,14 @@ public class Project extends AbstractEntity {
     }
 
     public Project(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+    	return this.id;
+    }
+    
+    public void setId(Integer id) {
         this.id = id;
     }
 

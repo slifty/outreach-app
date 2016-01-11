@@ -1,19 +1,16 @@
 package com.innoppl.outreach.data.model;
 
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Cacheable;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 import com.innoppl.outreach.data.utils.InjectMethods;
 import com.innoppl.outreach.data.utils.Method;
@@ -24,27 +21,23 @@ import com.innoppl.outreach.data.utils.Method;
  */
 @Cacheable
 @Entity
-@Table(name = "ORole")
-public class ORole extends AbstractEntity {
+@Table(name = "PATH_CODE_NAME_TYPE")
+public class LOVNameDataQuality extends LOV {
 
     @Id
     @Basic(optional = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
-    @InjectMethods(include = Method.ALL)
+    @Column(name = "CODE_KEY", insertable=false, updatable=false)
     protected Integer id;
     
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "name")
-    private String name;
+    @Size(min = 1, max = 512)
+    @Column(name = "DESCRIPTION")
+    private String displayName;
     
-    public ORole() {
-    }
-
-    public ORole(Integer id) {
-        this.id = id;
+    public Integer getLovType() {
+        return 0; // TODO: This is terrible -- this should come from a central list somewhere.
     }
 
     public Integer getId() {
@@ -55,11 +48,24 @@ public class ORole extends AbstractEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    @JsonProperty("type")
+    public void setLovType(Integer lovType) {
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    @JsonProperty("name")
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getValueString() {
+        return id.toString();
+    }
+
+    @JsonProperty("value")
+    public void setValueString(String valueString) {
     }
 }
