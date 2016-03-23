@@ -25,28 +25,28 @@ import com.innoppl.outreach.data.utils.Method;
  */
 @Cacheable
 @Entity
-@Table(name = "Project")
+@Table(name = "PATH_CODE_HUD_PROGRAM")
 public class Project extends AbstractEntity {
     private static final long serialVersionUID = 1L;
     
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "PROGRAM_KEY")
     @InjectMethods(include = Method.ALL)
     protected Integer id;
     
-    @Column(name = "ProjectName")
+    @Column(name = "PROGRAM_DESCRIPTION")
     private String projectName;
     
-    @Column(name = "ContinuumProject")
+    @Column(name = "IS_CONTINUUM")
     private Integer continuumProject;
     
-    @Column(name = "ProjectType")
+    @Column(name = "PROGRAM_TYPE_KEY")
     private Integer projectType;
     
     @JsonIgnore
-    @JoinColumn(name = "OrganizationID", referencedColumnName = "ID")
+    @JoinColumn(name = "AGENCY_KEY", referencedColumnName = "AGENCY_KEY")
     @ManyToOne
     private Organization organizationID;
     

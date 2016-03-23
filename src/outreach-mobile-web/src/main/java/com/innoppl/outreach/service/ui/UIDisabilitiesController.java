@@ -89,7 +89,7 @@ public class UIDisabilitiesController {
                             disabilityTypeList.get(i).getDisplayName());
                     dummyDisabilitiesList.add(new Disabilities(Integer.parseInt(
                             disabilityTypeList.get(i).getValueString()),
-                            enrollment));
+                            enrollment.getPersonalID()));
                 }
                 disabilitiesListWrapper.setDisabilitiesList(dummyDisabilitiesList);
                 mav.addObject("disabilityTypeMap", disabilityTypeMap);

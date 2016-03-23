@@ -27,49 +27,49 @@ import com.innoppl.outreach.data.utils.Method;
  */
 @Cacheable
 @Entity
-@Table(name = "Services")
+@Table(name = "PATH_CLIENT_CONTACT_NEED")
 public class Services extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CONTACT_NEED_KEY")
     @InjectMethods(include = Method.ALL)
     protected Integer id;
     
     @Basic(optional = false)
     @NotNull
-    @Column(name = "DateProvided")
+    @Column(name = "SERVICE_DATE")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private Date dateProvided;
 
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "RecordType")
-    private Integer recordType;
+    // @Basic(optional = false)
+    // @NotNull
+    // @Column(name = "RecordType")
+    // private Integer recordType;
     
-    @Basic(optional = false)
-    @Column(name = "TypeProvided")
-    private Integer typeProvided;
+    // @Basic(optional = false)
+    // @Column(name = "TypeProvided")
+    // private Integer typeProvided;
 
-    @Size(min = 0, max = 256)
-    @Column(name = "OtherTypeProvided")
-    private String otherTypeProvided;
+    // @Size(min = 0, max = 256)
+    // @Column(name = "OtherTypeProvided")
+    // private String otherTypeProvided;
 
-    @Column(name = "SubTypeProvided")
-    private Integer subTypeProvided;
+    // @Column(name = "SubTypeProvided")
+    // private Integer subTypeProvided;
 
-    @Column(name = "FAAmount")
-    private Float fAAmount;
+    // @Column(name = "FAAmount")
+    // private Float fAAmount;
 
-    @Column(name = "ReferralOutcome")
+    @Column(name = "OUTCOME_KEY")
     private Integer referralOutcome;
 
     @JsonIgnore
-    @JoinColumn(name = "ProjectEntryID", referencedColumnName = "ID")
+    @JoinColumn(name = "ProjectEntryID", referencedColumnName = "PROGRAM_KEY")
     @ManyToOne(optional = false)
     private Enrollment projectEntryID;
 
@@ -98,47 +98,40 @@ public class Services extends AbstractEntity {
     }
 
     public Integer getRecordType() {
-        return recordType;
+        return 0;
     }
 
     @JsonProperty("RecordType")
     public void setRecordType(Integer recordType) {
-        this.recordType = recordType;
     }
 
     public Integer getTypeProvided() {
-        return typeProvided;
+    	return 0;
     }
 
     public void setTypeProvided(Integer typeProvided) {
-        this.typeProvided = typeProvided;
     }
 
     public String getOtherTypeProvided() {
-        return otherTypeProvided;
+    	return "";
     }
 
     @JsonProperty("DateProvided")
     public void setOtherTypeProvided(String otherTypeProvided) {
-        this.otherTypeProvided = otherTypeProvided;
     }
 
     public Integer getSubTypeProvided() {
-        return subTypeProvided;
+    	return 0;
     }
 
-    @JsonProperty("DateProvided")
     public void setSubTypeProvided(Integer subTypeProvided) {
-        this.subTypeProvided = subTypeProvided;
     }
 
     public Float getfAAmount() {
-        return fAAmount;
+    	return Float.parseFloat("0");
     }
 
-    @JsonProperty("DateProvided")
     public void setfAAmount(Float fAAmount) {
-        this.fAAmount = fAAmount;
     }
 
     public Integer getReferralOutcome() {
@@ -154,7 +147,6 @@ public class Services extends AbstractEntity {
         return projectEntryID;
     }
 
-    @JsonProperty("DateProvided")
     public void setProjectEntryID(Enrollment projectEntryID) {
         this.projectEntryID = projectEntryID;
     }

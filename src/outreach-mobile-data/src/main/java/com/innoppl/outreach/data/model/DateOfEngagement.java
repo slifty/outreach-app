@@ -25,6 +25,8 @@ import com.innoppl.outreach.data.utils.Method;
  *
  * @author Jerald Mejarla
  */
+
+// NOTE: This model is not linked to Compass Rose
 @Cacheable
 @Entity
 @Table(name = "DateOfEngagement")
@@ -33,7 +35,7 @@ public class DateOfEngagement extends AbstractEntity {
 
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     @InjectMethods(include = Method.ALL)
     protected Integer id;
@@ -46,7 +48,7 @@ public class DateOfEngagement extends AbstractEntity {
     private Date dateOfEngagement;
     
     @JsonIgnore
-    @JoinColumn(name = "ProjectEntryID", referencedColumnName = "ID")
+    @JoinColumn(name = "ProjectEntryID", referencedColumnName = "PROGRAM_KEY")
     @ManyToOne(optional = false)
     private Enrollment projectEntryID;
 

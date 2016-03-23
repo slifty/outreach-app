@@ -47,9 +47,9 @@ public class ClientDaoImpl extends AbstractJPADao<Client, Integer>
         LOG.debug("Searching: " + startAge + " , " + endAge + " , " + startDate.toString() + " , " + endDate.toString());
        try {
            return (List<Client>) getEntityManager().createQuery(
-                   "select u from Client u where u.firstName like :firstName"
-                   + " and u.lastName like :lastName"
-                   + " and u.ssn like :ssn"
+                   "select u from Client u where (u.firstName like :firstName or :firstName = '')"
+                   + " and (u.lastName like :lastName or :lastName = '')"
+                   + " and (u.ssn like :ssn OR :ssn = '')"
                    + " and u.dob BETWEEN :endDate AND :startDate")
                    .setParameter("lastName", "%" + lastName + "%")
                    .setParameter("firstName", "%" + firstName + "%")

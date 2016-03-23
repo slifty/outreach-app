@@ -26,7 +26,7 @@ public class LOVEmploymentType extends LOV {
 
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CODE_KEY", insertable=false, updatable=false)
     protected Integer id;
     

@@ -23,26 +23,26 @@ import com.innoppl.outreach.data.utils.Method;
  */
 @Cacheable
 @Entity
-@Table(name = "Organization")
+@Table(name = "PATH_AGENCY")
 public class Organization extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "AGENCY_KEY")
     @InjectMethods(include = Method.ALL)
     protected Integer id;
     
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "OrganizationName")
+    @Column(name = "AGENCY_NAME")
     private String organizationName;
 
     @Size(max = 45)
-    @Column(name = "OrganizationCommonName")
+    @Column(name = "AGENCY_DISPALY_NAME")
     private String organizationCommonName;
 
     @JsonIgnore

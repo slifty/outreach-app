@@ -88,18 +88,18 @@ public class ClientServiceImpl implements ClientService {
                     }
                 }
 
-                final VeteranInfo veteranInfo = client.getVeteranInfo();
-                if (veteranInfo != null) {
-                    VeteranInfo veteranInfoSaved = veteranInfoDao.save(veteranInfo, uid);
-                    client.setVeteranInfo(veteranInfoSaved);
-                }
+//                final VeteranInfo veteranInfo = client.getVeteranInfo();
+//                if (veteranInfo != null) {
+//                    VeteranInfo veteranInfoSaved = veteranInfoDao.save(veteranInfo, uid);
+//                    client.setVeteranInfo(veteranInfoSaved);
+//                }
                 final Client savedClient = clientDao.save(client, uid);
-                final Enrollment enrollment = new Enrollment();
-                enrollment.setPersonalID(savedClient);
+                //final Enrollment enrollment = new Enrollment();
+                //enrollment.setPersonalID(savedClient);
                 Project project = projectService.findById(client.getProjectID());
 //                final OUser oUser = userDao.findById(uid);
-                enrollment.setProjectID(project);
-                enrollmentService.addEnrollment(enrollment, uid);
+                //enrollment.setProjectID(project);
+                //enrollmentService.addEnrollment(enrollment, uid);
                 return savedClient;
             } catch (ServiceException ex) {
                 throw ex;

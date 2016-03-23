@@ -29,7 +29,7 @@ public class VeteranInfo extends AbstractEntity {
 
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     @InjectMethods(include = Method.ALL)
     protected Integer id;

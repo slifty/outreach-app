@@ -13,6 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.Basic;
@@ -39,9 +40,10 @@ public class Client extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @SequenceGenerator(name="client_sequence", sequenceName="CLIENT_KEY_SQ")
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="client_sequence")
     @Column(name = "CLIENT_KEY")
     @InjectMethods(include = Method.ALL)
     protected Integer id;

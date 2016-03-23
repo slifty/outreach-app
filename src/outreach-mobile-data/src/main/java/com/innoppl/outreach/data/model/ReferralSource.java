@@ -29,7 +29,7 @@ public class ReferralSource extends AbstractEntity {
 
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     @InjectMethods(include = Method.ALL)
     protected Integer id;
@@ -44,7 +44,7 @@ public class ReferralSource extends AbstractEntity {
     private Integer countOutreachReferralApproached;
 
     @JsonIgnore
-    @JoinColumn(name = "ProjectEntryID", referencedColumnName = "ID")
+    @JoinColumn(name = "ProjectEntryID", referencedColumnName = "PROGRAM_KEY")
     @ManyToOne(optional = false)
     private Enrollment projectEntryID;
 

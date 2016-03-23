@@ -25,36 +25,36 @@ import com.innoppl.outreach.data.utils.Method;
  */
 @Cacheable
 @Entity
-@Table(name = "PATHStatus")
+@Table(name = "PATH_CLIENT_PROGRAMTYPE_PATH")
 public class PATHStatus extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @Basic(optional = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CLIENT_KEY")
     @InjectMethods(include = Method.ALL)
     protected Integer id;
     
     @Basic(optional = false)
     @NotNull
-    @Column(name = "DateOfStatus")
+    @Column(name = "ENTERED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date dateOfStatus;
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ClientEnrolledInPATH")
+    @Column(name = "QUEST10")
     private Integer clientEnrolledInPATH;
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ReasonNotEnrolled")
+    @Column(name = "QUEST20")
     private Integer reasonNotEnrolled;
 
-    @JoinColumn(name = "ProjectEntryID", referencedColumnName = "ID")
+    @JoinColumn(name = "PROGRAM_KEY", referencedColumnName = "PROGRAM_KEY")
     @ManyToOne(optional = false)
     private Enrollment projectEntryID;
 
